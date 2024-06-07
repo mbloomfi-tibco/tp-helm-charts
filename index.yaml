@@ -1,0 +1,970 @@
+apiVersion: v1
+entries:
+  artifactmanager:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:26.513307455Z"
+    description: A Helm chart for Artifact Manager
+    digest: 51c0dc161a71d3303e7298fc3ba9bfc762793fa570fcf42bb28497419af2bea8
+    name: artifactmanager
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/artifactmanager-1.2.9/artifactmanager-1.2.9.tgz
+    version: 1.2.9
+  bwprovisioner:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:26.623349602Z"
+    description: TIBCO Platform Dataplane Capabilty -- BW Provisioner
+    digest: a9abfd0245b653f7c6fea7639180ccfd892b7bd9dc49a4b108a90d6518515fd1
+    home: https://github.com/tibco/tp-iapp-bw-provisioner.git
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO Platform Dev Team
+    name: bwprovisioner
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/bwprovisioner-1.2.9/bwprovisioner-1.2.9.tgz
+    version: 1.2.9
+  dp-config-aks:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "Added kong"
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:26.758708899Z"
+    dependencies:
+    - condition: traefik.enabled
+      name: traefik
+      repository: https://traefik.github.io/charts
+      version: 24.0.0
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.7.2
+    - condition: kong.enabled
+      name: kong
+      repository: https://charts.konghq.com
+      version: 2.33.3
+    description: A Helm chart to configure TIBCO Dataplane on AZURE
+    digest: 40179fd12fa6f527d146b04576e6961cf63a447d08c8f56a1f272dee8ced0c32
+    name: dp-config-aks
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-config-aks-1.2.4/dp-config-aks-1.2.4.tgz
+    version: 1.2.4
+  dp-config-aws:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "added crossplane charts"
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:26.90224859Z"
+    dependencies:
+    - condition: traefik.enabled
+      name: traefik
+      repository: https://traefik.github.io/charts
+      version: 24.0.0
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.7.2
+    - condition: tigera-operator.enabled
+      name: tigera-operator
+      repository: https://docs.tigera.io/calico/charts
+      version: v3.25.2
+    - condition: kong.enabled
+      name: kong
+      repository: https://charts.konghq.com
+      version: 2.33.3
+    - condition: crossplane.enabled
+      name: crossplane
+      repository: https://charts.crossplane.io/stable
+      version: v1.13.2
+    - condition: crossplane-components.enabled
+      name: crossplane-components
+      repository: file://charts/crossplane-components
+      version: 1.2.1
+    description: Helm chart to configure Dataplane on AWS
+    digest: c816976c4dfbcc75a549ada7a2a43c0d4371c806dd77e16862569af7fe5a8761
+    name: dp-config-aws
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-config-aws-1.2.11/dp-config-aws-1.2.11.tgz
+    version: 1.2.11
+  dp-config-es:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:27.016535089Z"
+    dependencies:
+    - condition: eck-custom-resources-operator.enabled
+      name: eck-custom-resources-operator
+      repository: https://xco-sk.github.io/eck-custom-resources/
+      version: 0.5.6
+    description: Helm chart to configure elastic search
+    digest: fc9795b6f9f6480426879e104a5fd634c9371c5538078eb26c291e2680716193
+    name: dp-config-es
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-config-es-1.2.1/dp-config-es-1.2.1.tgz
+    version: 1.2.1
+  dp-configure-namespace:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:27.109069417Z"
+    description: A Helm chart for creating service account, cluster-role, cluster-role-binding,
+      role-binding & network-policies
+    digest: cb340215498ba0cb1ef5d8eca2707fc8e94e01f57c034d88e7af834e742e0e99
+    name: dp-configure-namespace
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-configure-namespace-1.2.27/dp-configure-namespace-1.2.27.tgz
+    version: 1.2.27
+  dp-core-infrastructure:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:27.218057184Z"
+    dependencies:
+    - condition: tibtunnel.enabled
+      name: tp-tibtunnel
+      repository: ""
+      version: 1.2.*
+    - condition: tp-provisioner-agent.enabled
+      name: tp-provisioner-agent
+      repository: ""
+      version: 1.2.*
+    - condition: config.enabled
+      name: config
+      repository: ""
+      version: 1.0.*
+    - condition: haproxy.enabled
+      name: haproxy
+      repository: ""
+      version: 1.39.0
+    description: A Helm chart for Data Plane Infrastructure
+    digest: 717ef6e9d332ee4688c5925199fc93dbae5da0f08c4d3d3731b9aac4b32d7b4e
+    name: dp-core-infrastructure
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-core-infrastructure-1.2.19/dp-core-infrastructure-1.2.19.tgz
+    version: 1.2.19
+  dp-oauth2proxy-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: dp-oauth2proxy-recipes
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:27.322307241Z"
+    description: TIBCO Platform OAuth2 Proxy Data Plane recipes
+    digest: e9f54a1558ae75d115ffedf7bf0e65d5a1f86efa1ec557e7497127394574508d
+    keywords:
+    - tibco-platform
+    - control-plane
+    - recipes
+    name: dp-oauth2proxy-recipes
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-oauth2proxy-recipes-1.2.7/dp-oauth2proxy-recipes-1.2.7.tgz
+    version: 1.2.7
+  flogoprovisioner:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:27.421621697Z"
+    description: TIBCO Platform Dataplane Capabilty -- Flogo Provisioner
+    digest: df974975cfe09fdde20a8977e43fb18ad086d6a00c1fae92a2c290cbaf9e2974
+    home: https://github.com/tibco/tp-iapp-flogo-provisioner.git
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO Platform Dev Team
+    name: flogoprovisioner
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/flogoprovisioner-1.2.9/flogoprovisioner-1.2.9.tgz
+    version: 1.2.9
+  istio-crd:
+  - apiVersion: v1
+    appVersion: 1.21.2
+    created: "2024-06-07T08:59:27.524577399Z"
+    description: Helm chart for deploying Istio cluster resources and CRDs
+    digest: bd6670b337452d4e0573a89908ed9b078d79ff37f101be5c4e4a76fff12089d3
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - istio
+    name: istio-crd
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/istio-crd-1.2.10/istio-crd-1.2.10.tgz
+    version: 1.2.10
+  istio-istiod:
+  - apiVersion: v1
+    appVersion: 1.21.2
+    created: "2024-06-07T08:59:27.644495435Z"
+    description: Helm chart for istio control plane
+    digest: 4bfb4f2fb94957176e2399cba0230b7477acf8edc9e22079743342b718f0898f
+    icon: https://github.com/cncf/artwork/blob/master/projects/istio/icon/color/istio-icon-color.svg
+    keywords:
+    - istio
+    - istiod
+    - istio-discovery
+    name: istio-istiod
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/istio-istiod-1.2.10/istio-istiod-1.2.10.tgz
+    version: 1.2.10
+  jaeger:
+  - apiVersion: v2
+    appVersion: 1.55.0
+    created: "2024-06-07T08:59:27.763187951Z"
+    dependencies:
+    - condition: provisionDataStore.cassandra
+      name: cassandra
+      repository: https://charts.helm.sh/incubator
+      version: 0.15.3
+    - condition: provisionDataStore.elasticsearch
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: ^7.11.1
+    - condition: provisionDataStore.kafka
+      name: kafka
+      repository: https://charts.bitnami.com/bitnami
+      version: ^19.1.5
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.16.0
+    description: A Jaeger Helm chart for Kubernetes
+    digest: 22016487380b3a7d0709fb0eb7df6c28d164c389a096018ef6c5f8d9fa91d4c9
+    home: https://jaegertracing.io
+    icon: https://camo.githubusercontent.com/afa87494e0753b4b1f5719a2f35aa5263859dffb/687474703a2f2f6a61656765722e72656164746865646f63732e696f2f656e2f6c61746573742f696d616765732f6a61656765722d766563746f722e737667
+    keywords:
+    - jaeger
+    - opentracing
+    - tracing
+    - instrumentation
+    kubeVersion: '>= 1.21-0'
+    name: jaeger
+    sources:
+    - https://hub.docker.com/u/jaegertracing/
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/jaeger-0.72.10/jaeger-0.72.10.tgz
+    version: 0.72.10
+  msg-ems-tp:
+  - apiVersion: v2
+    appVersion: 10.3.0.7
+    created: "2024-06-07T08:59:27.860493025Z"
+    description: Data-plane provisioning chart for EMS server group
+    digest: d7a3d78a837397f22999b43bc00f24cc445e0af8c9eb34298f18c1a9714615f7
+    keywords:
+    - tibco-platform
+    - data-plane
+    - messaging
+    - EMS
+    maintainers:
+    - email: tcm@tibco.com
+      name: TIBCO Cloud Messaging Team
+    name: msg-ems-tp
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/msg-ems-tp-1.2.24/msg-ems-tp-1.2.24.tgz
+    version: 1.2.24
+  msg-pulsar-tp:
+  - apiVersion: v2
+    appVersion: 3.0.2-24
+    created: "2024-06-07T08:59:27.971360251Z"
+    description: Data-plane provisioning chart for Pulsar server group
+    digest: 10bb1e2215de010211d8554cfc59f7c29c64347cec3107f7c896d5efea79d40f
+    keywords:
+    - tibco-platform
+    - data-plane
+    - messaging
+    - Quasar
+    - Pulsar
+    maintainers:
+    - email: tcm@tibco.com
+      name: TIBCO Cloud Messaging Team
+    name: msg-pulsar-tp
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/msg-pulsar-tp-1.2.24/msg-pulsar-tp-1.2.24.tgz
+    version: 1.2.24
+  o11yservice:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:28.079756739Z"
+    description: A helm chart for o11y service
+    digest: cc38a0a8dd3fd95055292a4ef6c0c9131700db5044177476026d76232f4a7b5e
+    name: o11yservice
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/o11yservice-1.2.26/o11yservice-1.2.26.tgz
+    version: 1.2.26
+  oauth2-proxy:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: securityContext and timeout of the initContainer wait-for-redis configurable via values.
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/159
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:28.168637155Z"
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 675df55a8c4909d78f332ee94d40303bd0fdf580392b17474c9ebcdfba62b7dc
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/oauth2-proxy-10.1.006/oauth2-proxy-10.1.006.tgz
+    version: 10.1.006
+  opentelemetry-collector:
+  - apiVersion: v2
+    appVersion: 0.98.0
+    created: "2024-06-07T08:59:28.27084197Z"
+    description: OpenTelemetry Collector Helm chart for Kubernetes
+    digest: 3d2242c372b09de4c5ed269e0deb8338d3b50b949eaf8a242deb15f8babd01ad
+    home: https://opentelemetry.io/
+    icon: https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png
+    maintainers:
+    - name: dmitryax
+    - name: TylerHelmuth
+    name: opentelemetry-collector
+    sources:
+    - https://github.com/open-telemetry/opentelemetry-collector
+    - https://github.com/open-telemetry/opentelemetry-collector-contrib
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/opentelemetry-collector-0.89.2/opentelemetry-collector-0.89.2.tgz
+    version: 0.89.2
+  platform-base:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: platform-base
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:28.39565851Z"
+    dependencies:
+    - name: tp-cp-configuration
+      repository: alias:tibco-platform
+      version: 1.2.17
+    - name: tp-cp-recipes
+      repository: alias:tibco-platform
+      version: 1.2.52
+    - name: tp-cp-o11y
+      repository: alias:tibco-platform
+      version: 1.2.12
+    - name: tp-cp-core
+      repository: alias:tibco-platform
+      version: 1.2.7819
+    - name: tp-cp-core-ops
+      repository: alias:tibco-platform
+      version: 1.2.7819
+    - name: tp-cp-core-finops
+      repository: alias:tibco-platform
+      version: 1.2.372
+    - condition: tp-cp-integration.enabled
+      name: tp-cp-integration
+      repository: alias:tibco-platform
+      tags:
+      - integration
+      version: 1.2.36
+    - condition: tp-cp-tibcohub-contrib.enabled
+      name: tp-cp-tibcohub-contrib
+      repository: alias:tibco-platform
+      version: 1.2.9
+    - condition: tp-cp-msg-contrib.enabled
+      name: tp-cp-msg-contrib
+      repository: alias:tibco-platform
+      version: 1.2.24
+    - condition: tp-cp-hawk.enabled
+      name: tp-cp-hawk
+      repository: alias:tibco-platform
+      version: 1.2.14
+    description: TIBCO Platform base chart
+    digest: 3ba585341859e92c1a14d4b1bf736410ebee7f2013b47b81bbff4ea9fd457672
+    keywords:
+    - tibco-platform
+    - platform
+    - base
+    name: platform-base
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/platform-base-1.2.140/platform-base-1.2.140.tgz
+    version: 1.2.140
+  platform-bootstrap:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: platform-bootstrap
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:28.504389206Z"
+    dependencies:
+    - name: tp-cp-bootstrap
+      repository: alias:tibco-platform
+      version: 1.2.27
+    description: TIBCO Platform bootstrap chart
+    digest: b8d71d96aad2d0d363045ddae792472c9e558f08556e66edb6bbce86acfce872
+    keywords:
+    - tibco-platform
+    - platform
+    - bootstrap
+    name: platform-bootstrap
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/platform-bootstrap-1.2.23/platform-bootstrap-1.2.23.tgz
+    version: 1.2.23
+  servicemesh-contrib:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-06-07T08:59:28.603592118Z"
+    description: A Helm chart for copying Service Mesh contribution to EFS
+    digest: 10476790bb4235b0aafcf4a97e9bbd21388b5ddfeac84ce4c340281ca649f703
+    name: servicemesh-contrib
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/servicemesh-contrib-1.0.1/servicemesh-contrib-1.0.1.tgz
+    version: 1.0.1
+  tibco-developer-hub:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:28.691834414Z"
+    dependencies:
+    - name: common
+      repository: ""
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 11.x.x
+    description: A Helm chart for TIBCO® Developer Hub
+    digest: 81f12a875292393b79d125b18214f3193fc53304a429d2886409cb0fffa20d60
+    name: tibco-developer-hub
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tibco-developer-hub-1.2.11/tibco-developer-hub-1.2.11.tgz
+    version: 1.2.11
+  tp-cp-bootstrap:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-bootstrap
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:28.804491507Z"
+    dependencies:
+    - condition: hybrid-proxy.enabled
+      name: hybrid-proxy
+      repository: ""
+      version: 1.2.*
+    - condition: resource-set-operator.enabled
+      name: resource-set-operator
+      repository: ""
+      version: 1.2.*
+    - condition: router-operator.enabled
+      name: router-operator
+      repository: ""
+      version: 1.2.*
+    - condition: compute-services.enabled
+      name: compute-services
+      repository: ""
+      version: 1.2.*
+    - condition: otel-collector.enabled
+      name: otel-collector
+      repository: ""
+      version: 0.89.*
+    description: TIBCO Platform Control Plane bootstrap chart
+    digest: 09ba920c8e5e5adc8eba0c16768420cfe7a76ea08530976c2a6393c640e9364d
+    keywords:
+    - tibco-platform
+    - control-plane
+    - infra
+    - bootstrap
+    name: tp-cp-bootstrap
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-bootstrap-1.2.27/tp-cp-bootstrap-1.2.27.tgz
+    version: 1.2.27
+  tp-cp-bwce-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-bwce-recipes
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:28.909526224Z"
+    description: TIBCO Platform BusinessWorks Data Plane recipes
+    digest: 9f298db994179f815b2ed05a6f11e9054976d3a76010f2a156b1e60e234d29b0
+    keywords:
+    - tibco-platform
+    - control-plane
+    name: tp-cp-bwce-recipes
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-bwce-recipes-1.2.14/tp-cp-bwce-recipes-1.2.14.tgz
+    version: 1.2.14
+  tp-cp-bwce-utilities:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.01598744Z"
+    dependencies:
+    - condition: bwce-utilities.enabled
+      name: bwce-utilities
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane -- BWCE Utilities
+    digest: 3d0a7a4b72cb28a09fc14b28bd909f45bd93182e7596d8fa246f843bd817058c
+    name: tp-cp-bwce-utilities
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-bwce-utilities-1.2.11/tp-cp-bwce-utilities-1.2.11.tgz
+    version: 1.2.11
+  tp-cp-configuration:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-configuration
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.155151158Z"
+    description: TIBCO Platform Control Plane Configuration chart
+    digest: 4d8a3aa248a443cf41591b580c84ca211a6591f924ce173dc0de6b46719066ea
+    keywords:
+    - tibco-platform
+    - control-plane
+    - infra
+    - configuration
+    name: tp-cp-configuration
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-configuration-1.2.17/tp-cp-configuration-1.2.17.tgz
+    version: 1.2.17
+  tp-cp-core:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.243102929Z"
+    dependencies:
+    - condition: admin-webserver.enabled
+      name: admin-webserver
+      repository: ""
+      version: 1.2.*
+    - condition: web-server.enabled
+      name: web-server
+      repository: ""
+      version: 1.2.*
+    - condition: orchestrator.enabled
+      name: orchestrator
+      repository: ""
+      version: 1.2.*
+    - condition: user-subscriptions.enabled
+      name: user-subscriptions
+      repository: ""
+      version: 1.2.*
+    - condition: email-service.enabled
+      name: email-service
+      repository: ""
+      version: 1.2.*
+    - condition: cronjobs.enabled
+      name: cronjobs
+      repository: ""
+      version: 1.2.*
+    - condition: identity-management.enabled
+      name: identity-management
+      repository: ""
+      version: 1.2.*
+    - condition: identity-provider.enabled
+      name: identity-provider
+      repository: ""
+      version: 1.2.*
+    - condition: pengine.enabled
+      name: pengine
+      repository: ""
+      version: 1.2.*
+    description: A Helm chart for -- tp-cp-core
+    digest: e9acc156a069d2fbea61a04906aee3ece4ff54411cd6caaa5d625ce432323bc5
+    name: tp-cp-core
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-core-1.2.7819/tp-cp-core-1.2.7819.tgz
+    version: 1.2.7819
+  tp-cp-core-finops:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.339991367Z"
+    dependencies:
+    - name: monitoring-service
+      repository: ""
+      version: 1.2.*
+    - name: finops-service
+      repository: ""
+      version: 1.2.*
+    - name: finops-prometheus
+      repository: ""
+      version: 1.2.*
+    - name: finops-web-server
+      repository: ""
+      version: 1.2.*
+    - name: finops-otel-collector
+      repository: ""
+      version: 1.2.*
+    description: A Helm chart for -- tp-cp-core-finops
+    digest: cb081bbda35a2ca39451a41fdd840d88b0cf00ded12b911c4297204f3d193b79
+    name: tp-cp-core-finops
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-core-finops-1.2.372/tp-cp-core-finops-1.2.372.tgz
+    version: 1.2.372
+  tp-cp-core-ops:
+  - apiVersion: v1
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.438454653Z"
+    description: TIBCO Platform Control Plane -- Bundle
+    digest: b11c70bcfe9fe4433d4948c5f2af5a79c89e134241beff243d9afb89bfd31436
+    name: tp-cp-core-ops
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-core-ops-1.2.7819/tp-cp-core-ops-1.2.7819.tgz
+    version: 1.2.7819
+  tp-cp-flogo-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-flogo-recipes
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.546467048Z"
+    description: TIBCO Platform Flogo Data Plane recipes
+    digest: e6d1c5294889741f343738a500b1d6a0121ca65eeba6b1787e878a163b1e7ba0
+    keywords:
+    - tibco-platform
+    - control-plane
+    name: tp-cp-flogo-recipes
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-flogo-recipes-1.2.20/tp-cp-flogo-recipes-1.2.20.tgz
+    version: 1.2.20
+  tp-cp-flogo-utilities:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.651790212Z"
+    dependencies:
+    - condition: flogo-utilities.enabled
+      name: flogo-utilities
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane -- FLOGO Utilities
+    digest: 2f68b9682d8bdb070b39059e3d4c1c7b7dfd15784445017ede13b1820d7a86ef
+    name: tp-cp-flogo-utilities
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-flogo-utilities-1.2.20/tp-cp-flogo-utilities-1.2.20.tgz
+    version: 1.2.20
+  tp-cp-hawk:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.760990976Z"
+    dependencies:
+    - condition: tp-cp-hawk-infra-querynode.enabled
+      name: tp-cp-hawk-infra-querynode
+      repository: ""
+      version: 1.2.*
+    - condition: tp-cp-hawk-infra-prometheus.enabled
+      name: tp-cp-hawk-infra-prometheus
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane - Hawk Infra Bundle
+    digest: 04ce6fd4a66ba6a4b85f7e5d2b63d18de719d28f07901c2c1e5991fd80ce5786
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    keywords:
+    - tibco-platform
+    - control-plane
+    - hawk
+    maintainers:
+    - name: TIBCO Cloud Hawk Team
+    name: tp-cp-hawk
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-hawk-1.2.14/tp-cp-hawk-1.2.14.tgz
+    version: 1.2.14
+  tp-cp-infra-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-infra-recipes
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.848453404Z"
+    description: TIBCO Platform Infrastructure Data Plane recipes
+    digest: b0247453ceba7bd50f4c0a8106dfca26dae7f12d56a89cd6cb4e97e397eaca95
+    keywords:
+    - tibco-platform
+    - control-plane
+    - infra
+    - recipes
+    name: tp-cp-infra-recipes
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-infra-recipes-1.2.29/tp-cp-infra-recipes-1.2.29.tgz
+    version: 1.2.29
+  tp-cp-integration:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-integration
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:29.96347465Z"
+    dependencies:
+    - name: tp-cp-integration-common
+      repository: alias:tibco-platform
+      version: 1.2.5
+    - condition: tp-cp-integration-bwce.enabled
+      name: tp-cp-integration-bwce
+      repository: alias:tibco-platform
+      version: 1.2.21
+    - condition: tp-cp-integration-flogo.enabled
+      name: tp-cp-integration-flogo
+      repository: alias:tibco-platform
+      version: 1.2.13
+    - condition: tp-cp-integration-bw5.enabled
+      name: tp-cp-integration-bw5
+      repository: alias:tibco-platform
+      version: 1.2.17
+    - condition: tp-cp-bwce-utilities.enabled
+      name: tp-cp-bwce-utilities
+      repository: alias:tibco-platform
+      version: 1.2.11
+    - condition: tp-cp-flogo-utilities.enabled
+      name: tp-cp-flogo-utilities
+      repository: alias:tibco-platform
+      version: 1.2.20
+    description: TIBCO Platform Integration chart
+    digest: 650a698d7c8faf31c63c3d5e37be75d50fabf59f2b67ee05135e3e9647877a76
+    keywords:
+    - tibco-platform
+    - platform
+    - integration
+    name: tp-cp-integration
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-integration-1.2.36/tp-cp-integration-1.2.36.tgz
+    version: 1.2.36
+  tp-cp-integration-bw5:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.073454704Z"
+    dependencies:
+    - condition: bw5-webserver.enabled
+      name: bw5-webserver
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane -- BW5 Integration
+    digest: 5a4161482333ad892bb914390669710b311f0f567d07e75e66f65691c93494ca
+    name: tp-cp-integration-bw5
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-integration-bw5-1.2.17/tp-cp-integration-bw5-1.2.17.tgz
+    version: 1.2.17
+  tp-cp-integration-bwce:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.175752132Z"
+    dependencies:
+    - condition: bw-webserver.enabled
+      name: bw-webserver
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane -- Integration for BWCE
+    digest: 821900535c469c255f53240d5e2c9f25c618dd5dcb4a1880b54baf46824102b2
+    name: tp-cp-integration-bwce
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-integration-bwce-1.2.21/tp-cp-integration-bwce-1.2.21.tgz
+    version: 1.2.21
+  tp-cp-integration-common:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.281797723Z"
+    dependencies:
+    - condition: fileserver.enabled
+      name: fileserver
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane -- Integration Common
+    digest: 6f8404113f30715cafd0e1d8390b6f79c08109aa2f4dcded989ce23d4b0a2068
+    name: tp-cp-integration-common
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-integration-common-1.2.5/tp-cp-integration-common-1.2.5.tgz
+    version: 1.2.5
+  tp-cp-integration-flogo:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.359677595Z"
+    dependencies:
+    - condition: flogo-webserver.enabled
+      name: flogo-webserver
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane -- Integration for Flogo
+    digest: 4235f88cc5ffc11d2a9901531e92317d3af8ffdac946b508e1af65e1bf39f79b
+    name: tp-cp-integration-flogo
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-integration-flogo-1.2.13/tp-cp-integration-flogo-1.2.13.tgz
+    version: 1.2.13
+  tp-cp-msg-contrib:
+  - apiVersion: v2
+    appVersion: 1.2.0-30
+    created: "2024-06-07T08:59:30.618632165Z"
+    description: TIBCO Platform Control Plane -- Messaging
+    digest: 522841e6d2670d785a503a35e3328695f3702d65e85ff5f48213c0fa44a88e44
+    keywords:
+    - tibco-platform
+    - control-plane
+    - messaging
+    - EMS
+    - Pulsar
+    maintainers:
+    - email: tcm@tibco.com
+      name: TIBCO Cloud Messaging Team
+    name: tp-cp-msg-contrib
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-msg-contrib-1.2.24/tp-cp-msg-contrib-1.2.24.tgz
+    version: 1.2.24
+  tp-cp-o11y:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.710154073Z"
+    dependencies:
+    - condition: o11y-service.enabled
+      name: o11y-service
+      repository: ""
+      version: 1.2.*
+    description: TIBCO Platform Control Plane -- O11Y Infra
+    digest: b0a9c523a1041a164547114455dace95deb60cad02d8df5b14b6b0b3ab4d44b8
+    keywords:
+    - o11y
+    name: tp-cp-o11y
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-o11y-1.2.12/tp-cp-o11y-1.2.12.tgz
+    version: 1.2.12
+  tp-cp-proxy:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.794238364Z"
+    description: A Helm chart for Control Plane Proxy
+    digest: 91070df464b69dfb633f8b13e763b4a9568c223a7b4e499393a0edbca8968fd8
+    keywords:
+    - cp-proxy
+    - data-plane
+    name: tp-cp-proxy
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-proxy-1.2.9/tp-cp-proxy-1.2.9.tgz
+    version: 1.2.9
+  tp-cp-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-recipes
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.891119426Z"
+    dependencies:
+    - name: tp-cp-infra-recipes
+      repository: alias:tibco-platform
+      version: 1.2.29
+    - name: tp-cp-bwce-recipes
+      repository: alias:tibco-platform
+      version: 1.2.14
+    - name: tp-cp-flogo-recipes
+      repository: alias:tibco-platform
+      version: 1.2.20
+    - name: tp-cp-tibcohub-recipes
+      repository: alias:tibco-platform
+      version: 1.2.13
+    - name: dp-oauth2proxy-recipes
+      repository: alias:tibco-platform
+      version: 1.2.7
+    - name: tp-cp-servicemesh-recipes
+      repository: alias:tibco-platform
+      version: 1.2.13
+    description: TIBCO Platform recipe chart
+    digest: e5a2dfe0d977f92dcd6d5fccfbad446020894b2f5cea72d3c7b73cb93fd5a3fa
+    keywords:
+    - tibco-platform
+    - platform
+    - recipes
+    name: tp-cp-recipes
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-recipes-1.2.52/tp-cp-recipes-1.2.52.tgz
+    version: 1.2.52
+  tp-cp-servicemesh-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-servicemesh-recipes
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:30.990296823Z"
+    description: TIBCO Platform Infrastructure Data Plane recipes
+    digest: 46c22de10f23a7ed29223acc7106c9c35cb5f649e9150e48f07d922584159698
+    keywords:
+    - tibco-platform
+    - control-plane
+    - servicemesh
+    - recipes
+    name: tp-cp-servicemesh-recipes
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-servicemesh-recipes-1.2.13/tp-cp-servicemesh-recipes-1.2.13.tgz
+    version: 1.2.13
+  tp-cp-tibcohub-contrib:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:31.077685016Z"
+    description: A Helm chart for TIBCO Hub CP contribution
+    digest: cb2af060b39377a5633b025baed339313d307165a4d1be15b955b1ea259babcc
+    name: tp-cp-tibcohub-contrib
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-tibcohub-contrib-1.2.9/tp-cp-tibcohub-contrib-1.2.9.tgz
+    version: 1.2.9
+  tp-cp-tibcohub-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tp-cp-tibcohub-recipes
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:31.154501003Z"
+    description: TIBCO Developer Hub Data Plane Recipes
+    digest: aa02a3d9b6ee423d6c0ff906f6a37e458da6b7d06f14a10a2062e441da3f2025
+    home: https://github.com/tibco/tp-dev-hub.git
+    keywords:
+    - tibco-platform
+    - control-plane
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO CIC Compute Dev Team
+    name: tp-cp-tibcohub-recipes
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-tibcohub-recipes-1.2.13/tp-cp-tibcohub-recipes-1.2.13.tgz
+    version: 1.2.13
+  tp-dp-monitor-agent:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-07T08:59:31.270989977Z"
+    description: A Helm chart for deploying the tp-dp-monitor-agent service
+    digest: 50bf0ffc329a99a91d803e3eb20096d2f867878f0eaf5db41328d226caef288f
+    name: tp-dp-monitor-agent
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
+    version: 1.2.118
+generated: "2024-06-07T08:59:31.271010295Z"
