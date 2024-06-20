@@ -135,6 +135,17 @@ entries:
   dp-configure-namespace:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2024-06-20T03:41:22.868030507Z"
+    description: A Helm chart for creating service account, cluster-role, cluster-role-binding,
+      role-binding & network-policies
+    digest: 6c0c57f54baf789d1e19369f4d2bcad7cfcc791e38c183a0f0c18ce12778a3f2
+    name: dp-configure-namespace
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-configure-namespace-1.2.28/dp-configure-namespace-1.2.28.tgz
+    version: 1.2.28
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2024-06-07T08:59:27.109069417Z"
     description: A Helm chart for creating service account, cluster-role, cluster-role-binding,
       role-binding & network-policies
@@ -145,6 +156,33 @@ entries:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-configure-namespace-1.2.27/dp-configure-namespace-1.2.27.tgz
     version: 1.2.27
   dp-core-infrastructure:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-20T03:41:22.976552602Z"
+    dependencies:
+    - condition: tibtunnel.enabled
+      name: tp-tibtunnel
+      repository: ""
+      version: 1.2.*
+    - condition: tp-provisioner-agent.enabled
+      name: tp-provisioner-agent
+      repository: ""
+      version: 1.2.*
+    - condition: config.enabled
+      name: config
+      repository: ""
+      version: 1.0.*
+    - condition: haproxy.enabled
+      name: haproxy
+      repository: ""
+      version: 1.39.0
+    description: A Helm chart for Data Plane Infrastructure
+    digest: 714700557cb5bcc4837abd83764efc2df35946326ceb7e3852a15cb07f2d6154
+    name: dp-core-infrastructure
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-core-infrastructure-1.2.21/dp-core-infrastructure-1.2.21.tgz
+    version: 1.2.21
   - apiVersion: v2
     appVersion: 1.2.0
     created: "2024-06-14T10:13:05.518262406Z"
@@ -1384,6 +1422,18 @@ entries:
   tp-cp-proxy:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2024-06-20T03:41:23.089931623Z"
+    description: A Helm chart for Control Plane Proxy
+    digest: f2b600541d54f728731c47819b204b45f4ebf8a051a0136ac8f7e8c43238549a
+    keywords:
+    - cp-proxy
+    - data-plane
+    name: tp-cp-proxy
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-cp-proxy-1.2.11/tp-cp-proxy-1.2.11.tgz
+    version: 1.2.11
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2024-06-14T10:13:08.981000919Z"
     description: A Helm chart for Control Plane Proxy
     digest: ce84a2e3b6a346cc68aa06eda0819593533e817c3508ce7b8e68074616dc6b9b
@@ -1561,4 +1611,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2024-06-14T10:13:09.462607578Z"
+generated: "2024-06-20T03:41:23.090063552Z"
