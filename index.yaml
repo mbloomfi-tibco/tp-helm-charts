@@ -685,6 +685,15 @@ entries:
   o11yservice:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2024-06-25T09:48:23.504610712Z"
+    description: A helm chart for o11y service
+    digest: b8730968aaa2fa478e0c0558824386c38660e8c8d242ea883cce0a5c7085a0eb
+    name: o11yservice
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/o11yservice-1.2.29/o11yservice-1.2.29.tgz
+    version: 1.2.29
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2024-06-24T12:43:38.90239681Z"
     description: A helm chart for o11y service
     digest: 240d0cfcf473d53aff0ef87213739417c8edb37cbc2d8297a3c6b6e81421828f
@@ -2052,4 +2061,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2024-06-24T12:43:40.176248288Z"
+generated: "2024-06-25T09:48:23.504782925Z"
