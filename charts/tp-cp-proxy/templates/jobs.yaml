@@ -45,11 +45,11 @@ spec:
             - name: NAMESPACE
               value: {{ .Release.Namespace }}
             - name: HTTP_PROXY
-             valueFrom:
-               configMapKeyRef:
-                 name: proxy-config
-                 key: HTTP_PROXY
-                 optional: true
+              valueFrom:
+                configMapKeyRef:
+                  name: proxy-config
+                  key: HTTP_PROXY
+                  optional: true
             - name: HTTPS_PROXY
               valueFrom:
                 configMapKeyRef:
