@@ -44,6 +44,24 @@ spec:
               value: {{ .Values.global.cp.dataplaneId }}
             - name: NAMESPACE
               value: {{ .Release.Namespace }}
+            - name: HTTP_PROXY
+             valueFrom:
+               configMapKeyRef:
+                 name: proxy-config
+                 key: HTTP_PROXY
+                 optional: true
+            - name: HTTPS_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: proxy-config
+                  key: HTTPS_PROXY
+                  optional: true
+            - name: NO_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: proxy-config
+                  key: NO_PROXY
+                  optional: true
       imagePullSecrets:
         - name: {{ .Values.global.cp.containerRegistry.secret }} {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
 
@@ -79,6 +97,24 @@ spec:
             - -s
             - {{ include "tp-cp-proxy.consts.outputSecretName" .}}
           env:
+            - name: HTTP_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: proxy-config
+                  key: HTTP_PROXY
+                  optional: true
+            - name: HTTPS_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: proxy-config
+                  key: HTTPS_PROXY
+                  optional: true
+            - name: NO_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: proxy-config
+                  key: NO_PROXY
+                  optional: true
             - name: DATAPLANE_ID
               value: {{ .Values.global.cp.dataplaneId }}
             - name: NAMESPACE
