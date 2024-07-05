@@ -9,7 +9,7 @@ kind: Ingress
 metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth-errors@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-rewrite@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-auth-header@kubernetescrd
-  name: {{ $fullName }}-public-traefik
+  name: {{ $fullName }}-public-nginx
 spec:
   ingressClassName: traefik
   rules:
@@ -39,6 +39,8 @@ spec:
       - X-Auth-Request-Access-Token
       - X-Atmosphere-Token
       - Authorization
+    tls:
+      insecureSkipVerify: true
 
 ---
 # Source: {{ $fullName }}/templates/ingress_public_nginx.yaml
@@ -74,5 +76,5 @@ spec:
     service:
       name: oauth2-proxy-{{ $.Values.global.cp.instanceId }}
       port: 80
-    query: "/oauth2/sign_in?rd={url}"
+    query: "/oauth2/start?rd={url}"
 {{- end }}
