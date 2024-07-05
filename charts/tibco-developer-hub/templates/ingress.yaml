@@ -16,14 +16,13 @@ metadata:
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth-errors@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd
     {{- if .Values.ingress.annotations }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.ingress.annotations "context" $) | nindent 4 }}
     {{- end }}
     {{- if .Values.commonAnnotations }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
     {{- end }}
-
 spec:
   {{- if .Values.ingress.className }}
   ingressClassName: {{ .Values.ingress.className | quote }}
@@ -63,17 +62,4 @@ spec:
       - Authorization
     tls:
       insecureSkipVerify: true
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: {{ $fullName }}-auth-errors
-spec:
-  errors:
-    status:
-      - "401-403"
-    service:
-      name: oauth2-proxy-{{ $.Values.global.cp.instanceId }}
-      port: 80
-    query: "/oauth2/start?rd={url}"
 {{- end }}

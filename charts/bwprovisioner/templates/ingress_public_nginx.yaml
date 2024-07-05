@@ -8,7 +8,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth-errors@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-rewrite@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-auth-header@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-rewrite@kubernetescrd
   name: {{ $fullName }}-public-nginx
 spec:
   ingressClassName: traefik
@@ -41,19 +41,6 @@ spec:
       - Authorization
     tls:
       insecureSkipVerify: true
-
----
-# Source: {{ $fullName }}/templates/ingress_public_nginx.yaml
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: {{ $fullName }}-auth-header
-spec:
-  headers:
-    customRequestHeaders:
-      X-Forwarded-Proto: "https"
-      X-Forwarded-Host: {{ .Values.publicApi.ingress.nginx.fqdn }}
-      X-Forwarded-Port: "443"
 ---
 # Source: {{ $fullName }}/templates/ingress_public_nginx.yaml
 apiVersion: traefik.containo.us/v1alpha1
@@ -64,17 +51,4 @@ spec:
   stripPrefix:
     prefixes:
       - {{ .Values.publicApi.ingress.nginx.pathPrefix }}
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: {{ $fullName }}-auth-errors
-spec:
-  errors:
-    status:
-      - "401-403"
-    service:
-      name: oauth2-proxy-{{ $.Values.global.cp.instanceId }}
-      port: 80
-    query: "/oauth2/start?rd={url}"
 {{- end }}
