@@ -30,7 +30,7 @@ metadata:
   name: {{ $fullName }}-auth
 spec:
   forwardAuth:
-    address: https://{{ .Values.publicApi.ingress.nginx.fqdn }}{{ .Values.publicApi.ingress.nginx.pathPrefix }}/oauth2/auth
+    address: https://{{ .Values.publicApi.ingress.nginx.fqdn }}{{ .Values.publicApi.ingress.nginx.pathPrefix }}/oauth2
     trustForwardHeader: true
     authResponseHeaders:
       - X-Auth-Request-User
