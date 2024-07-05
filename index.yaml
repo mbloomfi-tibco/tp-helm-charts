@@ -31,6 +31,20 @@ entries:
   bwprovisioner:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2024-07-05T17:13:08.962133772Z"
+    description: TIBCO Platform Dataplane Capabilty -- BW Provisioner
+    digest: c2f322af986d7bf0bd7f8048891fc58608c67e01284970a218f11b05e38c7cee
+    home: https://github.com/tibco/tp-iapp-bw-provisioner.git
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO Platform Dev Team
+    name: bwprovisioner
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/bwprovisioner-1.2.16/bwprovisioner-1.2.16.tgz
+    version: 1.2.16
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2024-07-05T08:19:15.671162124Z"
     description: TIBCO Platform Dataplane Capabilty -- BW Provisioner
     digest: e059fcd21b184b62e51f2fb87c1d39d44044adda60a3e0ac74568bc54ad28553
@@ -444,6 +458,20 @@ entries:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-oauth2proxy-recipes-1.2.7/dp-oauth2proxy-recipes-1.2.7.tgz
     version: 1.2.7
   flogoprovisioner:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-07-05T17:13:09.134618989Z"
+    description: TIBCO Platform Dataplane Capabilty -- Flogo Provisioner
+    digest: fdf720f86f74ab6888600f618d00b9c7579d43adc3ea080cfe980cd5357d482d
+    home: https://github.com/tibco/tp-iapp-flogo-provisioner.git
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO Platform Dev Team
+    name: flogoprovisioner
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/flogoprovisioner-1.2.13/flogoprovisioner-1.2.13.tgz
+    version: 1.2.13
   - apiVersion: v2
     appVersion: 1.2.0
     created: "2024-07-05T11:34:16.681441293Z"
@@ -985,6 +1013,26 @@ entries:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/servicemesh-contrib-1.0.1/servicemesh-contrib-1.0.1.tgz
     version: 1.0.1
   tibco-developer-hub:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-07-05T17:13:09.302905139Z"
+    dependencies:
+    - name: common
+      repository: ""
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 11.x.x
+    description: A Helm chart for TIBCO® Developer Hub
+    digest: 6d66205e6ffe327029ba8074b38bceb58e16968d9dd45e8eb46c88111fe40fe4
+    name: tibco-developer-hub
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tibco-developer-hub-1.2.16/tibco-developer-hub-1.2.16.tgz
+    version: 1.2.16
   - apiVersion: v2
     appVersion: 1.2.0
     created: "2024-07-05T13:15:22.316941676Z"
@@ -2214,4 +2262,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2024-07-05T13:15:22.317101023Z"
+generated: "2024-07-05T17:13:09.303024013Z"
