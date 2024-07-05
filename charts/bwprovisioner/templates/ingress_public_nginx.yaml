@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: k8s-traefik-traefik-5bee87438a-d8c7af6f988c1544.elb.eu-west-2.amazonaws.com
+  - host: {{ .Values.publicApi.ingress.nginx.fqdn }}
     http:
       paths:
       - backend:
