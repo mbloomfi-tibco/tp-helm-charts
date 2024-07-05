@@ -51,7 +51,7 @@ metadata:
   name: {{ $fullName }}-auth
 spec:
   forwardAuth:
-    address: https://{{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}/oauth2/auth
+    address: https://{{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}/oauth2
     trustForwardHeader: true
     authResponseHeaders:
       - X-Auth-Request-User
