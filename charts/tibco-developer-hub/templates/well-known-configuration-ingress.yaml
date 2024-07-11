@@ -31,7 +31,7 @@ spec:
             path: /tibco/hub/.well-known/openid-configuration
             pathType: Exact
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: {{ include "common.names.fullname" . }}-header
@@ -41,7 +41,7 @@ spec:
       X-Forwarded-Proto: "https"
       x-cp-host: {{ $cpHostname }}
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: {{ include "common.names.fullname" . }}-rewrite
