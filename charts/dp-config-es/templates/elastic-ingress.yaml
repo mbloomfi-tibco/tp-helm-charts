@@ -27,4 +27,4 @@ spec:
               service:
                 name: {{ .Values.es.ingress.service }}
                 port:
-                  name: https
+                  name: http
