@@ -16,6 +16,7 @@ metadata:
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
   annotations:
+    external-dns.alpha.kubernetes.io/target: {{ .Values.ingress.host }}
     traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ include "common.names.fullname" . }}-header@kubernetescrd,{{ .Release.Namespace }}-{{ include "common.names.fullname" . }}-rewrite@kubernetescrd
 spec:
   ingressClassName: {{ .Values.ingress.className | quote }}
