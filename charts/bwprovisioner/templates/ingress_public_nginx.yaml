@@ -8,7 +8,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-rewrite@kubernetescr
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-rewrite@kubernetescrd
     external-dns.alpha.kubernetes.io/target: {{ .Values.publicApi.ingress.nginx.fqdn }}
   name: {{ $fullName }}-public-nginx
 spec:
