@@ -36,10 +36,6 @@ es:
     host: elastic
     service: dp-config-es-es-http
     annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-      nginx.ingress.kubernetes.io/proxy-ssl-verify: 'false'
-      konghq.com/https-redirect-status-code: "302"
 
 kibana:
   version: "8.9.0"
@@ -49,10 +45,7 @@ kibana:
     host: kibana
     service: dp-config-es-kb-http
     annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-      nginx.ingress.kubernetes.io/proxy-ssl-verify: 'false'
-      konghq.com/https-redirect-status-code: "302"
+
 
 apm:
   enabled: false
@@ -63,10 +56,7 @@ apm:
     host: apm
     service: dp-config-es-apm-http
     annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-      nginx.ingress.kubernetes.io/proxy-ssl-verify: 'false'
-      konghq.com/https-redirect-status-code: "302"
+
 
 index:
   enabled: true
