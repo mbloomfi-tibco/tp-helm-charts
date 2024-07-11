@@ -268,6 +268,21 @@ entries:
   dp-config-es:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2024-07-11T16:35:38.24155578Z"
+    dependencies:
+    - condition: eck-custom-resources-operator.enabled
+      name: eck-custom-resources-operator
+      repository: https://xco-sk.github.io/eck-custom-resources/
+      version: 0.5.6
+    description: Helm chart to configure elastic search
+    digest: 46500ce89ccdbd515af8fcf929567e801b49c52453a411dd3734fbd22fd91316
+    name: dp-config-es
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-config-es-1.2.4/dp-config-es-1.2.4.tgz
+    version: 1.2.4
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2024-07-11T16:23:36.046661173Z"
     dependencies:
     - condition: eck-custom-resources-operator.enabled
@@ -2461,4 +2476,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2024-07-11T16:23:36.046873758Z"
+generated: "2024-07-11T16:35:38.241756193Z"
