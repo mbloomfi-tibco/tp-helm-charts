@@ -57,7 +57,7 @@ rules:
 - apiGroups: ["configuration.konghq.com"]
   resources: ["kongplugins"]
   verbs: ["list", "get", "create", "update", "delete"]
-- apiGroups: ["traefik.containo.us"]
+- apiGroups: ["traefik.io"]
   resources: ["middlewares"]
   verbs: ["list", "get", "create", "update", "delete"]
 - apiGroups: ["coordination.k8s.io"]

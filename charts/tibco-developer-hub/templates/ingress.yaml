@@ -45,7 +45,7 @@ spec:
                 port:
                   number: {{ .Values.service.ports.backend }}
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: {{ $fullName }}-auth
