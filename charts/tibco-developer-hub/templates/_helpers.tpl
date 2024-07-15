@@ -6,6 +6,11 @@ in the license file that is distributed with this file.
 
 {{/*
 Return the proper image name
+
+The if conditions have been changed for dir always match jfrog.  
+It is not a long term fix but has been changed so as to keep the original logic.
+Long term fix still required.
+
 */}}
 
 {{- define "backstage.image" -}}
@@ -17,6 +22,7 @@ Return the proper image name
         {{- $imageRoot = merge (dict "repository" .Values.backstage.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot  "global" .Values.global) }}
         {{- else -}}
+        {{- $imageRoot = merge (dict "repository" .Values.backstage.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot "global" .Values.global) }}
         {{- end -}}
     {{- end -}}
@@ -31,6 +37,7 @@ Return the proper image name
         {{- $imageRoot = merge (dict "repository" .Values.fluentbit.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot  "global" .Values.global) }}
         {{- else -}}
+        {{- $imageRoot = merge (dict "repository" .Values.fluentbit.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot "global" .Values.global) }}
         {{- end -}}
     {{- end -}}
@@ -45,6 +52,7 @@ Return the proper image name
         {{- $imageRoot = merge (dict "repository" .Values.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot  "global" .Values.global) }}
         {{- else -}}
+        {{- $imageRoot = merge (dict "repository" .Values.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot "global" .Values.global) }}
         {{- end -}}
     {{- end -}}
@@ -59,6 +67,7 @@ Return the proper image name
         {{- $imageRoot = merge (dict "repository" .Values.initContainer.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot  "global" .Values.global) }}
         {{- else -}}
+        {{- $imageRoot = merge (dict "repository" .Values.initContainer.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot "global" .Values.global) }}
         {{- end -}}
     {{- end -}}
