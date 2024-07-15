@@ -26,7 +26,7 @@ rules:
   verbs: ["create", "delete", "get", "update", "list"]
 - apiGroups: ["traefik.io"]
   resources: ["middlewares"]
-  verbs: ["list", "get", "create", "update", "delete"]
+  verbs: ["list", "get", "create", "update", "delete","patch"]
 
 
 ---
