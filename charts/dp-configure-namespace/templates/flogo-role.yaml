@@ -59,7 +59,7 @@ rules:
   verbs: ["list", "get", "create", "update", "delete"]
 - apiGroups: ["traefik.io"]
   resources: ["middlewares"]
-  verbs: ["list", "get", "create", "update", "delete"]
+  verbs: ["list", "get", "create", "update", "delete","patch"]
 - apiGroups: ["coordination.k8s.io"]
   resources: ["leases"]
   verbs: ["get", "list", "create", "update", "delete", "patch"]
