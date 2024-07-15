@@ -1003,6 +1003,46 @@ entries:
               url: https://github.com/oauth2-proxy/manifests/pull/159
     apiVersion: v2
     appVersion: 1.2.0
+    created: "2024-07-15T09:24:59.09124075Z"
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: ebd54af7ce2ea4bcd837a97728002b82ac8b752c5b59f2d697f0a132b3081429
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/oauth2-proxy-10.1.007/oauth2-proxy-10.1.007.tgz
+    version: 10.1.007
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: securityContext and timeout of the initContainer wait-for-redis configurable via values.
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/159
+    apiVersion: v2
+    appVersion: 1.2.0
     created: "2024-06-07T08:59:28.168637155Z"
     description: A reverse proxy that provides authentication with Google, Github
       or other providers
@@ -1178,6 +1218,26 @@ entries:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/servicemesh-contrib-1.0.1/servicemesh-contrib-1.0.1.tgz
     version: 1.0.1
   tibco-developer-hub:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-07-15T09:24:59.222245998Z"
+    dependencies:
+    - name: common
+      repository: ""
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 11.x.x
+    description: A Helm chart for TIBCO® Developer Hub
+    digest: 2654f37daab481e9fd693fac4ee8cf4ef0c7b6e6b50d9b2f7b36e6744603ab70
+    name: tibco-developer-hub
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tibco-developer-hub-1.2.20/tibco-developer-hub-1.2.20.tgz
+    version: 1.2.20
   - apiVersion: v2
     appVersion: 1.2.0
     created: "2024-07-11T08:18:12.592708341Z"
@@ -2487,4 +2547,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2024-07-15T08:57:28.769782039Z"
+generated: "2024-07-15T09:24:59.222485981Z"
