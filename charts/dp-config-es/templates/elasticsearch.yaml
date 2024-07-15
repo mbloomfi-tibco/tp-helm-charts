@@ -30,8 +30,8 @@ spec:
             storageClassName: {{ .Values.es.storage.name }}
   http:
     service:
-      metadata:
-        annotations:
-          konghq.com/protocol: https
       spec:
         type: ClusterIP
+    tls:
+      selfSignedCertificate:
+        disabled: true

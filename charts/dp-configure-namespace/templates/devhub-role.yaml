@@ -24,6 +24,9 @@ rules:
 - apiGroups: ["networking.k8s.io"]
   resources: ["ingresses"]
   verbs: ["create", "delete", "get", "update", "list"]
+- apiGroups: ["traefik.io"]
+  resources: ["middlewares"]
+  verbs: ["list", "get", "create", "update", "delete"]
 
 
 ---

@@ -27,4 +27,4 @@ spec:
               service:
                 name: {{ .Values.kibana.ingress.service }}
                 port:
-                  name: https
+                  name: http
