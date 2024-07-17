@@ -164,7 +164,7 @@ ingress:
   # Only used if API capabilities (networking.k8s.io/v1) allow it
   pathType: Prefix
   # Used to create an Ingress record.
-  # hosts:
+  hosts: {}
     # - chart-example.local
   # Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   # Warning! The configuration is dependant on your current k8s API version capabilities (networking.k8s.io/v1)
