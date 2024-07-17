@@ -15,9 +15,13 @@ metadata:
 {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
-{{- with .Values.ingress.annotations }}
   annotations:
-{{ toYaml . | indent 4 }}
+{{- with .Values.ingress.annotations }}
+  {{ toYaml . | indent 4 }}
+{{- end }}
+{{- with .Values.ingress.hosts -}}
+{{ $firstHost := index . 0 }}
+    external-dns.alpha.kubernetes.io/target: {{ $firstHost | quote }}
 {{- end }}
 spec:
   {{- if and .Values.ingress.className ( eq "true" ( include "ingress.supportsIngressClassName" . ) ) }}
