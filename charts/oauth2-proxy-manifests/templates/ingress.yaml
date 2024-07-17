@@ -19,7 +19,12 @@ metadata:
 {{- with .Values.ingress.annotations }}
 {{ toYaml . | indent 4 }}
 {{- end }}
-    external-dns.alpha.kubernetes.io/target: {{ index .Values.ingress.hosts 0 }}
+{{- $hosts := .Values.ingress.hosts -}}
+{{- if $hosts -}}
+  {{- $firstHost := first (keys $hosts) -}}
+    external-dns.alpha.kubernetes.io/target: {{ $firstHost }}
+{{- end}}
+
 spec:
   {{- if and .Values.ingress.className ( eq "true" ( include "ingress.supportsIngressClassName" . ) ) }}
   ingressClassName: {{ .Values.ingress.className | quote }}
