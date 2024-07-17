@@ -20,7 +20,7 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 {{- with .Values.ingress.hosts }}
-  {{- $firstHost := first (keys .) -}}
+  {{- $firstHost := index . 0 -}}
     external-dns.alpha.kubernetes.io/target: {{ $firstHost }}
 {{- end }}
 
