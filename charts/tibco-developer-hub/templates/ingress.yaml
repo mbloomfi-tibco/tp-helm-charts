@@ -71,7 +71,7 @@ metadata:
 spec:
   errors:
     query: >-
-      https://{{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}/oauth2/sign_out?rd={{ .Values.ingress.host }}{url}
+      https://{{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}/oauth2/sign_out?rd=https://{{ .Values.ingress.host }}{url}
     service:
       name: oauth2-proxy-{{ $.Values.global.cp.instanceId }}
       port: 80
