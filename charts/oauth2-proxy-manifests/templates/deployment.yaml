@@ -70,7 +70,26 @@ spec:
         volumeMounts:
         - name: shell-script-volume
           mountPath: /etc/config/script/iat_to_clienid.sh
-          subPath: iat_to_clienid.sh            
+          subPath: iat_to_clienid.sh
+        env:         
+        - name: HTTP_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: HTTP_PROXY
+              optional: true
+        - name: HTTPS_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: HTTPS_PROXY
+              optional: true
+        - name: NO_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: NO_PROXY
+              optional: true            
       containers:
 {{- if (((.Values.global.cp).logging).fluentbit).enabled }}
       - name: fluentbit
@@ -242,6 +261,24 @@ spec:
         {{- end }}
         {{- end }}
         {{- end }}
+        - name: HTTP_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: HTTP_PROXY
+              optional: true
+        - name: HTTPS_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: HTTPS_PROXY
+              optional: true
+        - name: NO_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: NO_PROXY
+              optional: true
         {{- if .Values.extraEnv }}
 {{ tpl (toYaml .Values.extraEnv) . | indent 8 }}
         {{- end }}
