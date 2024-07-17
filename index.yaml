@@ -1260,6 +1260,26 @@ entries:
   tibco-developer-hub:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2024-07-17T15:07:55.740732304Z"
+    dependencies:
+    - name: common
+      repository: ""
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 11.x.x
+    description: A Helm chart for TIBCO® Developer Hub
+    digest: 4aea795f719551e150b24c1abf0c58b374b805b88fc7124403a65e85dc02e083
+    name: tibco-developer-hub
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tibco-developer-hub-1.2.21/tibco-developer-hub-1.2.21.tgz
+    version: 1.2.21
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2024-07-15T09:24:59.222245998Z"
     dependencies:
     - name: common
@@ -2587,4 +2607,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2024-07-17T11:04:35.462748748Z"
+generated: "2024-07-17T15:07:55.740973926Z"
