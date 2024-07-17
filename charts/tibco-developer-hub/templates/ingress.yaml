@@ -16,8 +16,8 @@ metadata:
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
   annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth-errors@kubernetescrd,{{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd
     external-dns.alpha.kubernetes.io/target: {{ .Values.ingress.host }}
-    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd
     {{- if .Values.ingress.annotations }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.ingress.annotations "context" $) | nindent 4 }}
     {{- end }}
@@ -63,4 +63,18 @@ spec:
       - Authorization
     tls:
       insecureSkipVerify: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ $fullName }}-auth-errors
+spec:
+  errors:
+    query: >-
+      {{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}/oauth2/sign_out?rd={{ .Values.ingress.host }}{{url}
+    service:
+      name: oauth2-proxy-{{ $.Values.global.cp.instanceId }}
+      port: 80
+    status:
+      - '401'
 {{- end }}
