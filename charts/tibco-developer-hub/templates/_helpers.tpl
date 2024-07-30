@@ -22,7 +22,9 @@ Long term fix still required.
         {{- $imageRoot = merge (dict "repository" .Values.backstage.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot  "global" .Values.global) }}
         {{- else -}}
+        {{- if eq $imageRoot.repository "pdx/tibco-hub" }}
         {{- $imageRoot = merge (dict "repository" .Values.backstage.image.jfrogRepository) $imageRoot -}}
+        {{- end -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot "global" .Values.global) }}
         {{- end -}}
     {{- end -}}
@@ -37,9 +39,9 @@ Long term fix still required.
         {{- $imageRoot = merge (dict "repository" .Values.fluentbit.image.jfrogRepository) $imageRoot -}}
         {{ include "common.images.image" (dict "imageRoot" $imageRoot  "global" .Values.global) }}
         {{- else -}}
-        {{- $imageRoot = merge (dict "repository" .Values.fluentbit.image.jfrogRepository) $imageRoot -}}
+        {{- $imageRoot = merge (dict "repository" .Values.fluentbit.image.jfrogRepository) $imageRoot -}}   
         {{ include "common.images.image" (dict "imageRoot" $imageRoot "global" .Values.global) }}
-        {{- end -}}
+        {{- end -}} 
     {{- end -}}
 {{- end -}}
 
