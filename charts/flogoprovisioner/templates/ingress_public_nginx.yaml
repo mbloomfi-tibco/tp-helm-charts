@@ -59,7 +59,7 @@ metadata:
   name: {{ $fullName }}-auth-errors
 spec:
   errors:
-    query: https://{{ .Values.publicApi.ingress.nginx.pathPrefix }}/oauth2/sign_out?rd=https://{{ .Values.publicApi.ingress.nginx.fqdn }}{url}
+    query: {{ .Values.publicApi.ingress.nginx.pathPrefix }}/oauth2/sign_out?rd=https://{{ .Values.publicApi.ingress.nginx.fqdn }}{url}
     service:
       name: oauth2-proxy-{{ $.Values.global.cp.instanceId }}
       port: 80
