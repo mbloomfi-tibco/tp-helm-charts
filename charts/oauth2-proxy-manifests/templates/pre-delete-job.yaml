@@ -51,6 +51,25 @@ spec:
         - name: shell-script-volume
           mountPath: /etc/config/script/iat_to_clienid.sh
           subPath: iat_to_clienid.sh
+        env:         
+        - name: HTTP_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: HTTP_PROXY
+              optional: true
+        - name: HTTPS_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: HTTPS_PROXY
+              optional: true
+        - name: NO_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: NO_PROXY
+              optional: true         
 {{- if .Values.global.cp.containerRegistry.secret }}
       imagePullSecrets: [ name: {{ .Values.global.cp.containerRegistry.secret }} ]
 {{- end }}          
