@@ -43,7 +43,7 @@ data:
 {{- else}}
   app-logs-processor: '[k8sattributes/general-ns, transform/logs, memory_limiter, batch]'
 {{- end }}
-  app-logs-exporter: '[elasticsearch/log]'
+  app-logs-exporter: '[otlp/logs]'
 {{- else}}
   app-logs-receiver: '[otlp]'
   app-logs-processor: '[filter/devnull-logs]'
@@ -56,7 +56,7 @@ data:
 {{- else}}
   svc-logs-processor: '[k8sattributes/general-ns, memory_limiter, batch]'
 {{- end }}
-  svc-logs-exporter: '[elasticsearch/log]'
+  svc-logs-exporter: '[otlp/logs]'
 {{- else}}
   svc-logs-receiver: '[otlp]'
   svc-logs-processor: '[filter/devnull-logs]'
