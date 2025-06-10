@@ -8,11 +8,13 @@
 {{- range $rule := .Values.ingress.rules -}}
 {{- range $path := $rule.paths }}
 ---
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   annotations:
-    haproxy.router.openshift.io/rewrite-target: /
+    haproxy-ingress.github.io/headers: |
+        X-Forwarded-Prefix: {{ $path.path }}
+    haproxy-ingress.github.io/rewrite-target: /
     {{- if $path.serviceDiscoverable }}
     platform.tibco.com/service-description: {{ $path.serviceDescription | squote }}
     {{- end }}
@@ -24,27 +26,19 @@ metadata:
     platform.tibco.com/service-discoverable: {{ $path.serviceDiscoverable | quote }}
   name: {{ include "dp-bwce-app.fullname" $dot }}-{{ $path.port }}
 spec:
-  host: {{ $rule.host | quote }}
-  httpHeaders:
-    actions:
-      request:
-      - action:
-          set:
-            value: {{ $path.path }}
-          type: Set
-        name: X-Forwarded-Prefix
-      response: null
-  path: {{ $path.path }}
-  port:
-    targetPort: port-{{ $path.port }}
-  tls:
-    termination: edge
-  to:
-    kind: Service
-    name: {{ include "dp-bwce-app.fullname" $dot }}
-    weight: 100
-  wildcardPolicy: None
-        
+  ingressClassName: haproxy
+  rules:
+  - host: {{ $rule.host | quote }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: oauth2-proxy-{{ .Values.global.cp.instanceId }}
+            port:
+              number: {{ $path.port }}
+        pathType: Prefix
+        path: {{ $path.path }}
+
 {{- end }}
 {{- end }}
 {{- end }}
