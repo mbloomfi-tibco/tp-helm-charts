@@ -1,12 +1,12 @@
 {{- if .Values.ingress.enabled -}}
-{{- if eq .Values.ingress.controllerName "openshiftRouter" -}}
+{{- if or (eq .Values.ingress.controllerName "nginx") (eq .Values.ingress.controllerName "traefik") -}}
 {{- $serviceName := include "oauth2-proxy.fullname" . -}}
 {{- $servicePort := .Values.service.portNumber -}}
 {{- $ingressPath := .Values.ingress.path -}}
 {{- $ingressPathType := .Values.ingress.pathType -}}
 {{- $extraPaths := .Values.ingress.extraPaths -}}
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: {{ include "capabilities.ingress.apiVersion" . }}
+kind: Ingress
 metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
@@ -17,6 +17,15 @@ metadata:
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
   annotations:
+  {{- if eq .Values.ingress.controllerName "nginx" -}}
+    haproxy-ingress.github.io/headers: |
+      X-Forwarded-Prefix: {{ $ingressPath }}
+  {{- range $host := .Values.ingress.hosts }}
+      X-Forwarded-Host: {{ tpl $host $ | quote }}
+  {{- end }}
+      X-Forwarded-Port: 443
+      X-Forwarded-Proto: https
+  {{- end }}
   {{- with .Values.global.cp.resources.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -24,18 +33,26 @@ metadata:
     {{ toYaml . | indent 4 }}
   {{- end }}
 spec:
-  {{- range $host := .Values.ingress.hosts }}
-  host: {{ tpl $host $ | quote }}
-  path: {{ $ingressPath }}
-  port:
-    targetPort: http
+  {{- if and .Values.ingress.className ( eq "true" ( include "ingress.supportsIngressClassName" . ) ) }}
+  ingressClassName: {{ .Values.ingress.className | quote }}
+  {{- end }}
+  rules:
+    {{- range $host := .Values.ingress.hosts }}
+    - host: {{ tpl $host $ | quote }}
+      http:
+        paths:
+{{- if $extraPaths }}
+{{ toYaml $extraPaths | indent 10 }}
+{{- end }}
+          - path: {{ $ingressPath }}
+            {{- if eq "true" ( include "ingress.supportsPathType" $ ) }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend: {{- include "ingress.backend" ( dict "serviceName" $serviceName "servicePort" $servicePort "context" $ )  | nindent 14 }}
+    {{- end -}}
+  {{- if .Values.ingress.tls }}
   tls:
-    termination: edge
-  to:
-    kind: Service
-    name: {{ $serviceName}}
-    weight: 100
-  wildcardPolicy: None
+{{ tpl (toYaml .Values.ingress.tls) $ | indent 4 }}
   {{- end -}}
 {{- end -}}
 {{- end -}}
