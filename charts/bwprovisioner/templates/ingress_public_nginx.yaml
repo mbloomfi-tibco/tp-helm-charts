@@ -33,6 +33,6 @@ spec:
           service:
             name: oauth2-proxy-{{ .Values.global.cp.instanceId }}
             port:
-              number: http
+              number: 80
 
 {{- end }}
