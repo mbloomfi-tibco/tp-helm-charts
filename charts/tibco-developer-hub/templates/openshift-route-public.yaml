@@ -9,8 +9,8 @@ kind: Ingress
 metadata:
   annotations:
     haproxy-ingress.github.io/headers: |
-        X-Forwarded-Prefix: {{ .Values.publicApi.ingress.config.pathPrefix }}
-        X-Forwarded-Host: {{ .Values.publicApi.ingress.config.fqdn }}
+        X-Forwarded-Prefix: {{ .Values.ingress.pathPrefix }}
+        X-Forwarded-Host: {{ .Values.global.cp.resources.ingress.fqdn }}
         X-Forwarded-Port: 443
         X-Forwarded-Proto: https
     haproxy-ingress.github.io/rewrite-target: /
@@ -38,8 +38,8 @@ spec:
             port:
               number: 80
         pathType: Prefix
-        path: {{ .Values.publicApi.ingress.config.pathPrefix }}/
+        path: {{ .Values.ingress.pathPrefix }}/
   tls:
   - hosts:
-    - {{ .Values.publicApi.ingress.config.fqdn }}
+    - {{ .Values.global.cp.resources.ingress.fqdn }}
 {{- end }}
