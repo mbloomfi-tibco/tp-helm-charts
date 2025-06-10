@@ -40,6 +40,20 @@ entries:
   bwprovisioner:
   - apiVersion: v2
     appVersion: 1.7.0
+    created: "2025-06-10T11:18:17.564714707Z"
+    description: TIBCO Platform Dataplane Capabilty -- BW Provisioner
+    digest: 73614b832b12871334d373aa6b94c1f5310ae42d319737cd14c606ed485cac54
+    home: https://github.com/tibco/tp-iapp-bw-provisioner.git
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO Platform Dev Team
+    name: bwprovisioner
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/bwprovisioner-1.7.16/bwprovisioner-1.7.16.tgz
+    version: 1.7.16
+  - apiVersion: v2
+    appVersion: 1.7.0
     created: "2025-06-10T11:11:20.896109742Z"
     description: TIBCO Platform Dataplane Capabilty -- BW Provisioner
     digest: f0b612a8a9e999ee1aca9517637977e62e8e24be1d0700aef03e80d46a05fd3c
@@ -1510,6 +1524,46 @@ entries:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/o11yservice-1.2.26/o11yservice-1.2.26.tgz
     version: 1.2.26
   oauth2-proxy:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: securityContext and timeout of the initContainer wait-for-redis configurable via values.
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/159
+    apiVersion: v2
+    appVersion: 1.7.0
+    created: "2025-06-10T11:18:17.704726423Z"
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 66227cff7db6a44c9b57a8827993703c1ea31316f942f5075feff6d9a508d6b3
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/oauth2-proxy-10.2.17/oauth2-proxy-10.2.17.tgz
+    version: 10.2.17
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -4137,4 +4191,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2025-06-10T11:11:21.009839214Z"
+generated: "2025-06-10T11:18:17.705551475Z"
