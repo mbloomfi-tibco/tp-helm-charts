@@ -4,52 +4,42 @@
 
 {{ if eq .Values.publicApi.ingress.controllerName "openshiftRouter" -}}
 {{- $fullName := include "flogoprovisioner.fullname" . -}}
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   annotations:
-    haproxy.router.openshift.io/rewrite-target: /
+    haproxy-ingress.github.io/headers: |
+        X-Forwarded-Prefix: {{ .Values.publicApi.ingress.config.pathPrefix }}
+        X-Forwarded-Host: {{ .Values.publicApi.ingress.config.fqdn }}
+        X-Forwarded-Port: 443
+        X-Forwarded-Proto: https
+    haproxy-ingress.github.io/rewrite-target: /
+    haproxy-ingress.github.io/config-backend: |
+        http-response del-header x-auth-request-user
+        http-response del-header x-auth-request-email
+        http-response del-header x-auth-request-access-token
+        http-response del-header X-Forwarded-Access-Token
+        http-response del-header X-Atmosphere-Token
+        http-response del-header gap-auth
+     
     {{- with .Values.global.cp.resources.ingress.annotations }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
-  name: {{ $fullName }}-public-openshift
+  name: {{ $fullName }}-public-nginx
 spec:
-  host: {{ .Values.publicApi.ingress.config.fqdn }}
-  httpHeaders:
-    actions:
-      request:
-      - action:
-          set:
-            value: {{ .Values.publicApi.ingress.config.pathPrefix }}
-          type: Set
-        name: X-Forwarded-Prefix
-      response:
-      - action:
-          type: Delete
-        name: x-auth-request-user
-      - action:
-          type: Delete
-        name: x-auth-request-email
-      - action:
-          type: Delete
-        name: x-auth-request-access-token
-      - action:
-          type: Delete
-        name: X-Forwarded-Access-Token
-      - action:
-          type: Delete
-        name: X-Atmosphere-Token
-      - action:
-          type: Delete
-        name: gap-auth
-  path: {{ .Values.publicApi.ingress.config.pathPrefix }}
-  port:
-    targetPort: http
+  ingressClassName: haproxy
+  rules:
+  - host: {{ .Values.publicApi.ingress.config.fqdn }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: oauth2-proxy-{{ .Values.global.cp.instanceId }}
+            port:
+              number: 80
+        pathType: Prefix
+        path: {{ .Values.publicApi.ingress.config.pathPrefix }}/
   tls:
-    termination: edge
-  to:
-    kind: Service
-    name: oauth2-proxy-{{ .Values.global.cp.instanceId }}
-    weight: 100
-  wildcardPolicy: None
+  - hosts:
+    - {{ .Values.publicApi.ingress.config.fqdn }}
 {{- end }}
