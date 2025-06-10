@@ -39,5 +39,7 @@ spec:
               number: 80
         pathType: Prefix
         path: /
-
+  tls:
+  - hosts:
+    - {{ .Values.publicApi.ingress.config.fqdn }}
 {{- end }}
