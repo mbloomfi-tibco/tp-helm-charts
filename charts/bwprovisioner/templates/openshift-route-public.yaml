@@ -25,9 +25,9 @@ metadata:
     {{- with .Values.global.cp.resources.ingress.annotations }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
-  name: {{ $fullName }}-public-nginx
+  name: {{ $fullName }}-public-openshift
 spec:
-  ingressClassName: {{ .Values.publicApi.ingress.config.className }}
+  ingressClassName: haproxy
   rules:
   - host: {{ .Values.publicApi.ingress.config.fqdn }}
     http:
