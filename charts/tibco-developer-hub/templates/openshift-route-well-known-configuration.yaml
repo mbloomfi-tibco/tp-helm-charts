@@ -1,28 +1,46 @@
-# Copyright © 2023. Cloud Software Group, Inc.
+# Copyright © 2025. Cloud Software Group, Inc.
 # This file is subject to the license terms contained
 # in the license file that is distributed with this file.
 {{ if eq .Values.global.cp.resources.ingress.ingressController "openshiftRouter" -}}
 {{- $fullName := include "tibcohub.fullname" . -}}
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
 metadata:
   annotations:
-    haproxy.router.openshift.io/rewrite-target: /.well-known/openid-configuration
+    haproxy-ingress.github.io/headers: |
+        X-Forwarded-Prefix: {{ .Values.ingress.pathPrefix }}
+        X-Forwarded-Host: {{ .Values.global.cp.resources.ingress.fqdn }}
+        X-Forwarded-Port: 443
+        X-Forwarded-Proto: https
+    haproxy-ingress.github.io/rewrite-target: /.well-known/openid-configuration
+    haproxy-ingress.github.io/config-backend: |
+        http-response del-header x-auth-request-user
+        http-response del-header x-auth-request-email
+        http-response del-header x-auth-request-access-token
+        http-response del-header X-Forwarded-Access-Token
+        http-response del-header X-Atmosphere-Token
+        http-response del-header gap-auth
+     
     {{- with .Values.global.cp.resources.ingress.annotations }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
   name: {{ $fullName }}-wkc-openshift
   namespace: {{ .Release.Namespace | quote }}
 spec:
-  host: {{ .Values.global.cp.resources.ingress.fqdn }}
-  path: {{.Values.ingress.pathPrefix }}/.well-known/openid-configuration/
-  port:
-    targetPort: http-backend
+  ingressClassName: haproxy
+  rules:
+  - host: {{ .Values.publicApi.ingress.config.fqdn }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ $fullName }}
+            port:
+              number: {{ .Values.service.ports.backend }}
+        pathType: Prefix
+        path: {{.Values.ingress.pathPrefix }}/.well-known/openid-configuration/
   tls:
-    termination: edge
-  to:
-    kind: Service
-    name: {{ $fullName }}
-    weight: 100
-  wildcardPolicy: None
+  - hosts:
+    - {{ .Values.global.cp.resources.ingress.fqdn }}
 {{- end }}
