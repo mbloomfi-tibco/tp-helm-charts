@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- if or (eq .Values.ingress.controllerName "nginx") (eq .Values.ingress.controllerName "traefik") -}}
+{{- if eq .Values.ingress.controllerName "openshiftRouter" -}}
 {{- $serviceName := include "oauth2-proxy.fullname" . -}}
 {{- $servicePort := .Values.service.portNumber -}}
 {{- $ingressPath := .Values.ingress.path -}}
