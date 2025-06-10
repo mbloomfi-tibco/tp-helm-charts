@@ -982,6 +982,20 @@ entries:
   flogoprovisioner:
   - apiVersion: v2
     appVersion: 1.7.0
+    created: "2025-06-10T12:15:37.407332255Z"
+    description: TIBCO Platform Dataplane Capabilty -- Flogo Provisioner
+    digest: c3d21de7274f6f66a6caf6c33ff11f2debd374af11e67e9704b5f70a47c293aa
+    home: https://github.com/tibco/tp-iapp-flogo-provisioner.git
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO Platform Dev Team
+    name: flogoprovisioner
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/flogoprovisioner-1.7.6/flogoprovisioner-1.7.6.tgz
+    version: 1.7.6
+  - apiVersion: v2
+    appVersion: 1.7.0
     created: "2025-06-03T10:09:17.440080263Z"
     description: TIBCO Platform Dataplane Capabilty -- Flogo Provisioner
     digest: 2e74310851c38e03b2f4d120d265126ef68f397338cc8c2933706d8e23fb5f4c
@@ -2206,6 +2220,26 @@ entries:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/servicemesh-contrib-1.0.1/servicemesh-contrib-1.0.1.tgz
     version: 1.0.1
   tibco-developer-hub:
+  - apiVersion: v2
+    appVersion: 1.7.0
+    created: "2025-06-10T12:15:37.56507439Z"
+    dependencies:
+    - name: common
+      repository: ""
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 11.x.x
+    description: A Helm chart for TIBCO® Developer Hub
+    digest: a414a3b77835d8e979d9e23d936d04cded2674e5be66f2510ea669818b72803d
+    name: tibco-developer-hub
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tibco-developer-hub-1.7.16/tibco-developer-hub-1.7.16.tgz
+    version: 1.7.16
   - apiVersion: v2
     appVersion: 1.7.0
     created: "2025-06-03T10:09:19.315019647Z"
@@ -4205,4 +4239,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2025-06-10T11:30:50.849951808Z"
+generated: "2025-06-10T12:15:37.565423543Z"
