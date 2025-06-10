@@ -32,10 +32,8 @@ metadata:
   {{- with .Values.ingress.annotations }}
     {{ toYaml . | indent 4 }}
   {{- end }}
-spec:
-  {{- if and .Values.ingress.className ( eq "true" ( include "ingress.supportsIngressClassName" . ) ) }}
+spec
   ingressClassName: haproxy
-  {{- end }}
   rules:
     {{- range $host := .Values.ingress.hosts }}
     - host: {{ tpl $host $ | quote }}
