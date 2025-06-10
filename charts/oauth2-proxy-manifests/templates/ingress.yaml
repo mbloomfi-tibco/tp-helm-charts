@@ -17,6 +17,13 @@ metadata:
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
   annotations:
+  {{- if eq .Values.ingress.controllerName "nginx" -}}
+    haproxy-ingress.github.io/headers: |
+      X-Forwarded-Prefix: {{ $ingressPath }}
+      X-Forwarded-Host: {{ index .Values.ingress.hosts 0 }}
+      X-Forwarded-Port: 443
+      X-Forwarded-Proto: https
+  {{- end }}
   {{- with .Values.global.cp.resources.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
