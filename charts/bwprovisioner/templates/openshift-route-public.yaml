@@ -38,7 +38,7 @@ spec:
             port:
               number: 80
         pathType: Prefix
-        path: /
+        path: {{ .Values.publicApi.ingress.config.pathPrefix }}/
   tls:
   - hosts:
     - {{ .Values.publicApi.ingress.config.fqdn }}
