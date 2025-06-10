@@ -33,7 +33,7 @@ spec:
       paths:
       - backend:
           service:
-            name: oauth2-proxy-{{ .Values.global.cp.instanceId }}
+            name: {{ include "dp-bwce-app.fullname" $dot }}
             port:
               number: {{ $path.port }}
         pathType: Prefix
