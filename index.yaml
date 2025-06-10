@@ -434,6 +434,16 @@ entries:
   dp-bwce-app:
   - apiVersion: v2
     appVersion: 1.7.0
+    created: "2025-06-10T13:12:30.811460477Z"
+    description: A Helm chart for BWCE application
+    digest: 1d1a19ab9dfa4b212a81768cab8feb94cd073dca1aff64ffa213dfc3eb90d2fb
+    name: dp-bwce-app
+    type: application
+    urls:
+    - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/dp-bwce-app-1.7.8/dp-bwce-app-1.7.8.tgz
+    version: 1.7.8
+  - apiVersion: v2
+    appVersion: 1.7.0
     created: "2025-06-03T10:09:15.666247572Z"
     description: A Helm chart for BWCE application
     digest: 118e5752a8d9f017f18e108df8cd79c9cfc267c55f2e058a0c541dc8daa2af57
@@ -4259,4 +4269,4 @@ entries:
     urls:
     - https://github.com/mbloomfi-tibco/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.2.118/tp-dp-monitor-agent-1.2.118.tgz
     version: 1.2.118
-generated: "2025-06-10T12:45:44.79632452Z"
+generated: "2025-06-10T13:12:30.811849163Z"
