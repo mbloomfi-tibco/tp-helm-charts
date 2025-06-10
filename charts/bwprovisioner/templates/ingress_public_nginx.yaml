@@ -10,6 +10,9 @@ metadata:
   annotations:
     haproxy-ingress.github.io/headers: |
         X-Forwarded-Prefix: {{ .Values.publicApi.ingress.config.pathPrefix }}
+        X-Forwarded-Host: {{ .Values.publicApi.ingress.config.fqdn }}
+        X-Forwarded-Port: 443
+        X-Forwarded-Proto: https
     haproxy-ingress.github.io/rewrite-target: /
     haproxy-ingress.github.io/config-backend: |
         http-response del-header x-auth-request-user
