@@ -9,7 +9,7 @@ kind: Ingress
 metadata:
   annotations:
     haproxy-ingress.github.io/headers: |
-    	X-Forwarded-Prefix: {{ .Values.publicApi.ingress.config.pathPrefix }}
+        X-Forwarded-Prefix: {{ .Values.publicApi.ingress.config.pathPrefix }}
     haproxy-ingress.github.io/rewrite-target: /
     haproxy-ingress.github.io/config-backend: |
         http-response del-header x-auth-request-user
