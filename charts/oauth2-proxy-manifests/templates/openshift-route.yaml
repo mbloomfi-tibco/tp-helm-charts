@@ -20,7 +20,9 @@ metadata:
   {{- if eq .Values.ingress.controllerName "nginx" -}}
     haproxy-ingress.github.io/headers: |
       X-Forwarded-Prefix: {{ $ingressPath }}
-      X-Forwarded-Host: {{ index .Values.ingress.hosts 0 }}
+  {{- range $host := .Values.ingress.hosts }}
+      X-Forwarded-Host: {{ tpl $host $ | quote }}
+  {{- end }}
       X-Forwarded-Port: 443
       X-Forwarded-Proto: https
   {{- end }}
